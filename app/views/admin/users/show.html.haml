@@ -1,0 +1,13 @@
+%p
+  %b メールアドレス:
+  = @user.email
+%p
+  %b 配送先氏名:
+  = @user.ship_name
+%p
+  %b 配送先住所:
+  = @user.ship_address
+
+= link_to '編集', edit_admin_user_path(@user)
+\|
+= link_to '戻る', admin_users_path

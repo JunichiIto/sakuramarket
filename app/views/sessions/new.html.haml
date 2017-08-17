@@ -1,0 +1,18 @@
+- if @failure
+  .alert.alert-danger ログインできません。
+
+.row
+  .col-xs-offset-3.col-xs-6.login-box
+    %h2 ログイン
+    = form_with(model: @form, url: login_path(redirect_to: @redirect_to), local: true) do |f|
+
+      .form-group
+        = f.label "メールアドレス", for: :email
+        = f.text_field :email, id: 'email', class: 'form-control'
+
+      .form-group
+        = f.label "パスワード", for: :password
+        = f.password_field :password, id: 'password', class: 'form-control'
+
+      = f.submit "ログイン", class: 'btn btn-primary btn-block', style: 'margin-bottom: 16px'
+      = link_to "新規登録", signup_path

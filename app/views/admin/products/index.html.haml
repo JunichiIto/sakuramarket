@@ -1,0 +1,27 @@
+%h2 商品一覧
+
+%table.table.sortable
+  %thead
+    %tr
+      %th{ width: '10%' }
+      %th 商品名
+      %th{ width: '10%' } 価格
+      %th{ width: '10%' } 非表示
+      %th{ width: '10%' }
+      %th{ width: '10%' }
+
+  %tbody
+    - @products.each do |product|
+      %tr.item{ data: { model: 'product', url: position_admin_product_path(product) } }
+        %td= product_image_tag(product)
+        %td= product.name
+        %td= product.price
+        %td= checkmark(product.hidden)
+        %td= link_to '詳細', admin_product_path(product)
+        %td= link_to '編集', edit_admin_product_path(product)
+
+%br
+
+= link_to '新規登録', new_admin_product_path
+\|
+= link_to '戻る', admin_path

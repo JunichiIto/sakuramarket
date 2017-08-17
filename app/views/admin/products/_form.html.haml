@@ -1,0 +1,26 @@
+= form_with model: @product, url: url, local: true do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2 入力内容にエラーがあります
+      %ul
+        - @product.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label '商品名', for: :name
+    = f.text_field :name, id: :name, class: 'form-control'
+  .form-group
+    = f.label '商品画像', for: :image_file
+    = f.file_field :image_file, id: :image_file
+  .form-group
+    = f.label '価格', for: :price
+    = f.number_field :price, id: :price, class: 'form-control'
+  .form-group
+    = f.label '説明', for: :description
+    = f.text_area :description, id: :description, class: 'form-control', rows: 3
+  .checkbox
+    = f.label :hidden, for: :hidden do
+      = f.check_box :hidden, id: :hidden
+      非表示
+  .actions
+    = f.submit '保存', class: 'btn btn-primary'
